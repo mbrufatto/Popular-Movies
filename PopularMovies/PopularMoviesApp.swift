@@ -9,9 +9,20 @@ import SwiftUI
 
 @main
 struct PopularMoviesApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PopularView(
+                viewModel: PopularViewModel(
+                    service: MovieService(
+                        client: APIClient(apiKey: Self.apiKey)))
+            )
         }
     }
+}
+
+extension PopularMoviesApp {
+    static var apiKey: String {
+        Bundle.main.infoDictionary?["API_KEY"] as? String ?? ""
+     }
 }
