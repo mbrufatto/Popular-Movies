@@ -5,8 +5,9 @@
 //  Created by Marcio Habigzang Brufatto on 07/11/25.
 //
 
-import Foundation
 import Combine
+import Foundation
+import SwiftUI
 
 @MainActor
 final class PopularViewModel: ObservableObject {
@@ -37,7 +38,9 @@ final class PopularViewModel: ObservableObject {
         
         do {
             let response = try await service.fetchPopular(page: currentPage)
-            movies.append(contentsOf: response.results)
+            withAnimation(.easeInOut) {
+                movies.append(contentsOf: response.results)
+            }
             totalPages = response.totalPages
             currentPage += 1
         } catch {

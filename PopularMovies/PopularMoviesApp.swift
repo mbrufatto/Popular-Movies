@@ -12,11 +12,28 @@ struct PopularMoviesApp: App {
     
     var body: some Scene {
         WindowGroup {
-            PopularView(
-                viewModel: PopularViewModel(
-                    service: MovieService(
-                        client: APIClient(apiKey: Self.apiKey)))
-            )
+            TabView {
+                PopularView(
+                    viewModel: PopularViewModel(
+                        service: MovieService(
+                            client: APIClient(apiKey: Self.apiKey))
+                    )
+                )
+                .tabItem {
+                    Label("Populares", systemImage: "film.fill")
+                }
+                
+                SearchView(
+                    viewModel: SearchViewModel(
+                        service: MovieService(
+                            client: APIClient(apiKey: Self.apiKey)
+                        )
+                    )
+                )
+                .tabItem {
+                    Label("Buscar", systemImage: "magnifyingglass")
+                }
+            }
         }
     }
 }

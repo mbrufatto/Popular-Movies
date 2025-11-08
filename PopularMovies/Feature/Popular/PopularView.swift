@@ -39,6 +39,8 @@ struct PopularView: View {
                     }
                     .padding()
                 }
+                .scrollIndicators(.hidden)
+                
                 if viewModel.isLoading && viewModel.movies.isEmpty {
                     ProgressView("Carregando filmes...")
                         .progressViewStyle(.circular)
