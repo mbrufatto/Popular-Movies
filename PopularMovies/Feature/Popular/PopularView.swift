@@ -128,7 +128,7 @@ struct PopularView: View {
                         
                         Button {
                             Task {
-                                await viewModel.loadInitial()
+                                await viewModel.loadNextPageDependingOnMode()
                             }
                         } label: {
                             Label("Tentar novamente", systemImage: "arrow.clockwise")
@@ -143,7 +143,7 @@ struct PopularView: View {
             }
             .navigationTitle(viewModel.query.isEmpty ? "Filmes Populares" : "Buscar Filmes")
             .task {
-                await viewModel.loadInitial()
+                await viewModel.loadNextPageDependingOnMode()
             }
         }
     }
