@@ -15,6 +15,7 @@ final class MovieDetailViewModel: ObservableObject {
     @Published var trailerKey: String?
     @Published var isLoading = false
     @Published var errorMessage: String?
+    @Published var isFavorite = false
     
     private let service: MovieServiceProtocol
     
@@ -39,5 +40,54 @@ final class MovieDetailViewModel: ObservableObject {
             errorMessage = error.localizedDescription
         }
     }
+    
+    func toggleFavorite() {
+        if isFavorite {
+            FavoritesManager.shared.removeFavorite(with: movie.id)
+            isFavorite.toggle()
+            return
+        }
+        
+        Task {
+            let posterURL = imageURL(for: movie.posterPath, size: "w500")
+            let backdropURL = imageURL(for: movie.backdropPath, size: "w780")
+            
+            async let posterData = downloadImageData(from: posterURL)
+            async let backdropData = downloadImageData(from: backdropURL)
+            
+            let poster = await posterData
+            let backdrop = await backdropData
+            
+            FavoritesManager.shared.addFavorite(from: movie, posterData: poster, backdropData: backdrop)
+            
+            await MainActor.run {
+                self.isFavorite = true
+            }
+        }
+    }
+    
+    func checkFavorite() {
+        isFavorite = FavoritesManager.shared.isFavorite(id: movie.id)
+    }
+    
+    private func imageURL(for path: String?, size: String = "w500") -> URL? {
+        guard let path = path else { return nil }
+        return URL(string: "https://image.tmdb.org/t/p/\(size)\(path)")
+    }
+
+    private func downloadImageData(from url: URL?) async -> Data? {
+        guard let url = url else { return nil }
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
+                return nil
+            }
+            return data
+        } catch {
+            print("Falha ao baixar imagem: \(error)")
+            return nil
+        }
+    }
+    
     
 }

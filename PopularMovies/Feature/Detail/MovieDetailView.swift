@@ -85,7 +85,20 @@ struct MovieDetailView: View {
         }
         .navigationTitle(viewModel.movie.title)
         .navigationBarTitleDisplayMode(.inline)
-        .task { await viewModel.loadDetails() }
+        .toolbar(content: {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    Task { viewModel.toggleFavorite() }
+                } label: {
+                    Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
+                        .foregroundStyle(viewModel.isFavorite ? .red : .gray)
+                }
+            }
+        })
+        .task {
+            await viewModel.loadDetails()
+            viewModel.checkFavorite()
+        }
         .sheet(isPresented: $showTrailer) {
             if let key = viewModel.trailerKey {
                 TrailerPlayerSheet(videoKey: key)
