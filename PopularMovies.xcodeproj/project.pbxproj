@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		610210272EC017AF00E6ED04 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 610210262EC017AF00E6ED04 /* YouTubePlayerKit */; };
 		61C4E4402EBEDD8C00A1FE45 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 61C4E43F2EBEDD8C00A1FE45 /* Secrets.xcconfig */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				610210272EC017AF00E6ED04 /* YouTubePlayerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +86,7 @@
 			);
 			name = PopularMovies;
 			packageProductDependencies = (
+				610210262EC017AF00E6ED04 /* YouTubePlayerKit */,
 			);
 			productName = PopularMovies;
 			productReference = 61C4E4282EBEC44A00A1FE45 /* PopularMovies.app */;
@@ -113,6 +116,9 @@
 			);
 			mainGroup = 61C4E41F2EBEC44A00A1FE45;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				610210252EC017AF00E6ED04 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 61C4E4292EBEC44A00A1FE45 /* Products */;
 			projectDirPath = "";
@@ -368,6 +374,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		610210252EC017AF00E6ED04 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SvenTiigi/YouTubePlayerKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		610210262EC017AF00E6ED04 /* YouTubePlayerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 610210252EC017AF00E6ED04 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */;
+			productName = YouTubePlayerKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 61C4E4202EBEC44A00A1FE45 /* Project object */;
 }

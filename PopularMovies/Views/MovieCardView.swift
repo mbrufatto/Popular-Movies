@@ -13,10 +13,7 @@ struct MovieCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            AsyncImage(
-                url: URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath ?? "")")
-            ) {
-                phase in
+            AsyncImage(url: movie.posterURL) { phase in
                 switch phase {
                 case .empty:
                     ZStack {

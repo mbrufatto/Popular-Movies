@@ -11,29 +11,13 @@ import SwiftUI
 struct PopularMoviesApp: App {
     
     var body: some Scene {
-        WindowGroup {
-            TabView {
-                PopularView(
-                    viewModel: PopularViewModel(
-                        service: MovieService(
-                            client: APIClient(apiKey: Self.apiKey))
-                    )
+        WindowGroup {  
+            PopularView(
+                viewModel: PopularViewModel(
+                    service: MovieService(
+                        client: APIClient(apiKey: Self.apiKey))
                 )
-                .tabItem {
-                    Label("Populares", systemImage: "film.fill")
-                }
-                
-                SearchView(
-                    viewModel: SearchViewModel(
-                        service: MovieService(
-                            client: APIClient(apiKey: Self.apiKey)
-                        )
-                    )
-                )
-                .tabItem {
-                    Label("Buscar", systemImage: "magnifyingglass")
-                }
-            }
+            )
         }
     }
 }
@@ -41,5 +25,5 @@ struct PopularMoviesApp: App {
 extension PopularMoviesApp {
     static var apiKey: String {
         Bundle.main.infoDictionary?["API_KEY"] as? String ?? ""
-     }
+    }
 }

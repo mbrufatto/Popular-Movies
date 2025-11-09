@@ -10,6 +10,8 @@ import Foundation
 protocol MovieServiceProtocol {
     func fetchPopular(page: Int) async throws -> MovieResponse
     func searchMovies(query: String, page: Int) async throws -> MovieResponse
+    func fetchMovieDetails(id: Int) async throws -> Movie
+    func fetchVideos(for movieId: Int) async throws -> VideoResponse
 }
 
 final class MovieService: MovieServiceProtocol {
@@ -29,5 +31,15 @@ final class MovieService: MovieServiceProtocol {
             URLQueryItem(name: "page", value: "\(page)"),
             URLQueryItem(name: "include_adult", value: "false")
         ])
+    }
+}
+
+extension MovieService {
+    func fetchMovieDetails(id: Int) async throws -> Movie {
+        try await client.get("movie/\(id)")
+    }
+    
+    func fetchVideos(for movieId: Int) async throws -> VideoResponse {
+        try await client.get("movie/\(movieId)/videos")
     }
 }
