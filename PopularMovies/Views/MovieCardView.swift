@@ -20,6 +20,7 @@ struct MovieCardView: View {
                         Rectangle()
                             .fill(.gray.opacity(0.2))
                         ProgressView()
+                            .tint(.white)
                     }
                 case .success(let image):
                     image
@@ -31,7 +32,7 @@ struct MovieCardView: View {
                             .fill(.gray.opacity(0.2))
                         Image(systemName: "film")
                             .font(.largeTitle)
-                            .foregroundStyle(.gray)
+                            .foregroundStyle(.white.opacity(0.6))
                     }
                 @unknown default:
                     EmptyView()
@@ -43,15 +44,23 @@ struct MovieCardView: View {
             
             Text(movie.title)
                 .font(.headline)
+                .foregroundStyle(.white)
+                .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 1)
                 .lineLimit(2)
             
             Text(movie.overviewText)
                 .font(.footnote)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.white.opacity(0.85))
                 .lineLimit(3)
         }
         .padding(8)
-        .background(.ultraThinMaterial)
+        .background(
+            LinearGradient(
+                colors: [Color.black.opacity(0.35), Color.black.opacity(0.25)],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        )
         .cornerRadius(16)
         .shadow(radius: 2)
     }

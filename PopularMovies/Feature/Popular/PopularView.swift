@@ -12,12 +12,48 @@ struct PopularView: View {
     
     private let columns = [GridItem(.adaptive(minimum: 150), spacing: 16)]
     
+    
+    init(viewModel: PopularViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+
+        // 🔹 Define a cor do título da Navigation Bar
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground() // mantém o fundo atual (gradiente)
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
+                LinearGradient(
+                    colors: [
+                        .blue.opacity(0.9),
+                        .purple.opacity(0.7),
+                        .black.opacity(0.6)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+                
                 VStack {
                     TextField("Buscar filmes...", text: $viewModel.query)
-                        .textFieldStyle(.roundedBorder)
+                        .padding(.vertical, 16)
+                        .padding(.horizontal, 16)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color.white)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.purple.opacity(0.5), lineWidth: 1.2)
+                        )
+                        .foregroundColor(.purple)
+                        .tint(.purple)
                         .padding(.horizontal)
                         .padding(.top)
                     
