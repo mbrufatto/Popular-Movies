@@ -42,20 +42,22 @@ struct Movie: Codable, Identifiable, Equatable, Hashable {
     
 }
 
-//extension Movie {
-//    var posterURL: URL? {
-//        guard let path = posterPath else { return nil }
-//        return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
-//    }
-//}
-
 extension Movie {
     var posterURL: URL? {
         guard let path = posterPath?.trimmingCharacters(in: .whitespacesAndNewlines),
               !path.isEmpty,
-              !path.hasPrefix("null") else { // às vezes APIs colocam "null" como string
+              !path.hasPrefix("null") else {
             return nil
         }
         return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
+    }
+    
+    var backdropURL: URL? {
+        guard let path = backdropPath?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !path.isEmpty,
+              !path.hasPrefix("null") else {
+            return nil
+        }
+        return URL(string: "https://image.tmdb.org/t/p/w780\(path)")
     }
 }

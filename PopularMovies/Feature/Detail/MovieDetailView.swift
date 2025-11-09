@@ -10,6 +10,7 @@ import SwiftUI
 struct MovieDetailView: View {
     
     @StateObject var viewModel: MovieDetailViewModel
+    let posterSource: PosterSource
     @State private var showTrailer = false
     
     var body: some View {
@@ -27,18 +28,8 @@ struct MovieDetailView: View {
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    AsyncImage(
-                        url: URL(string: "https://image.tmdb.org/t/p/w780\(viewModel.movie.backdropPath ?? viewModel.movie.posterPath ?? "")")
-                    ) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                    } placeholder: {
-                        Rectangle()
-                            .fill(.gray.opacity(0.3))
-                            .frame(height: 200)
-                    }
-                    .cornerRadius(12)
+                    PosterView(source: posterSource)
+                        .cornerRadius(12)
                     
                     Text(viewModel.movie.title)
                         .font(.title)

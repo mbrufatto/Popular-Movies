@@ -49,8 +49,8 @@ final class MovieDetailViewModel: ObservableObject {
         }
         
         Task {
-            let posterURL = imageURL(for: movie.posterPath, size: "w500")
-            let backdropURL = imageURL(for: movie.backdropPath, size: "w780")
+            let posterURL = ImageURLBuilder.tmdb(path: movie.posterPath, size: "w500")
+            let backdropURL = ImageURLBuilder.tmdb(path: movie.backdropPath, size: "w780")
             
             async let posterData = downloadImageData(from: posterURL)
             async let backdropData = downloadImageData(from: backdropURL)
@@ -70,11 +70,6 @@ final class MovieDetailViewModel: ObservableObject {
         isFavorite = FavoritesManager.shared.isFavorite(id: movie.id)
     }
     
-    private func imageURL(for path: String?, size: String = "w500") -> URL? {
-        guard let path = path else { return nil }
-        return URL(string: "https://image.tmdb.org/t/p/\(size)\(path)")
-    }
-
     private func downloadImageData(from url: URL?) async -> Data? {
         guard let url = url else { return nil }
         do {

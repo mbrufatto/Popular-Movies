@@ -12,13 +12,11 @@ struct PopularView: View {
     
     private let columns = [GridItem(.adaptive(minimum: 150), spacing: 16)]
     
-    
     init(viewModel: PopularViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-
-        // 🔹 Define a cor do título da Navigation Bar
+        
         let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground() // mantém o fundo atual (gradiente)
+        appearance.configureWithTransparentBackground()
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
 
@@ -65,10 +63,10 @@ struct PopularView: View {
                                         viewModel: MovieDetailViewModel(
                                             movie: movie,
                                             service: MovieService(client: APIClient(apiKey: PopularMoviesApp.apiKey))
-                                        )
+                                        ), posterSource: .url(movie.backdropURL)
                                     )
                                 } label: {
-                                    MovieCardView(movie: movie)
+                                    MovieCardView(movie: movie, posterSource: .url(movie.posterURL))
                                 }
                                 .buttonStyle(.plain)
                                 .onAppear {

@@ -17,7 +17,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		61C4E4532EBEF4DD00A1FE45 /* Exceptions for "PopularMovies" folder in "PopularMovies" target */ = {
+		61704EDC2EC14E6400368D47 /* Exceptions for "PopularMovies" folder in "PopularMovies" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -30,7 +30,7 @@
 		61C4E42A2EBEC44A00A1FE45 /* PopularMovies */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				61C4E4532EBEF4DD00A1FE45 /* Exceptions for "PopularMovies" folder in "PopularMovies" target */,
+				61704EDC2EC14E6400368D47 /* Exceptions for "PopularMovies" folder in "PopularMovies" target */,
 			);
 			path = PopularMovies;
 			sourceTree = "<group>";

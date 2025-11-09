@@ -7,37 +7,24 @@
 
 import SwiftUI
 
+enum PosterSource {
+    case url(URL?)
+    case data(Data?)
+    case hybrid(url: URL?, dataFallback: Data?)
+}
+
 struct MovieCardView: View {
     
     let movie: Movie
+    let posterSource: PosterSource
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            AsyncImage(url: movie.posterURL) { phase in
-                switch phase {
-                case .empty:
-                    ZStack {
-                        Rectangle()
-                            .fill(.gray.opacity(0.2))
-                        ProgressView()
-                            .tint(.white)
-                    }
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                case .failure:
-                    ZStack {
-                        Rectangle()
-                            .fill(.gray.opacity(0.2))
-                        Image(systemName: "film")
-                            .font(.largeTitle)
-                            .foregroundStyle(.white.opacity(0.6))
-                    }
-                @unknown default:
-                    EmptyView()
-                }
-            }
+            PosterView(source: posterSource)
+                .frame(height: 220)
+                .cornerRadius(12)
+                .clipped()
+            
             .frame(height: 220)
             .cornerRadius(12)
             .clipped()
@@ -74,5 +61,5 @@ struct MovieCardView: View {
             overview: "Homem que gosta de mulher",
             posterPath: nil, backdropPath: nil,
             releaseDate: nil,
-            voteAverage: 5.0))
+            voteAverage: 5.0), posterSource: .url(nil))
 }
