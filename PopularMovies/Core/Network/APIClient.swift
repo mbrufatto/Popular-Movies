@@ -21,9 +21,13 @@ final class APIClient {
     private let apiKey: String
     private let baseURL = "https://api.themoviedb.org/3"
     
-    init(session: URLSession = .shared, apiKey: String) {
+    init(session: URLSession = .shared) {
         self.session = session
-        self.apiKey = apiKey
+        guard let key = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String,
+              !key.isEmpty else {
+            fatalError("🚨 API_KEY não configurada no Info.plist")
+        }
+        self.apiKey = key
     }
     
     func get<T: Decodable>(_ path: String, queryItems: [URLQueryItem] = []) async throws -> T {

@@ -16,7 +16,7 @@ struct PopularMoviesApp: App {
                 PopularView(
                     viewModel: PopularViewModel(
                         service: MovieService(
-                            client: APIClient(apiKey: Self.apiKey))
+                            client: APIClient())
                     )
                 )
                 .tabItem {
@@ -29,11 +29,5 @@ struct PopularMoviesApp: App {
                     }
             }
         }
-    }
-}
-
-extension PopularMoviesApp {
-    static var apiKey: String {
-        Bundle.main.infoDictionary?["API_KEY"] as? String ?? ""
     }
 }

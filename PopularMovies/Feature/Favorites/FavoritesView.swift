@@ -64,7 +64,7 @@ struct FavoritesView: View {
                                     
                                     NavigationLink {
                                         // Quebrando em subexpressões para o type-checker
-                                        let service = MovieService(client: APIClient(apiKey: PopularMoviesApp.apiKey))
+                                        let service = MovieService(client: APIClient())
                                         let detailVM = MovieDetailViewModel(movie: movie, service: service)
                                         MovieDetailView(
                                             viewModel: detailVM,

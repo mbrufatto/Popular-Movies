@@ -62,7 +62,7 @@ struct PopularView: View {
                                     MovieDetailView(
                                         viewModel: MovieDetailViewModel(
                                             movie: movie,
-                                            service: MovieService(client: APIClient(apiKey: PopularMoviesApp.apiKey))
+                                            service: MovieService(client: APIClient())
                                         ), posterSource: .url(movie.backdropURL)
                                     )
                                 } label: {
@@ -151,9 +151,7 @@ struct PopularView: View {
     PopularView(
         viewModel: PopularViewModel(
             service: MovieService(
-                client: APIClient(
-                    apiKey: Bundle.main.infoDictionary?["API_KEY"] as? String ?? ""
-                )
+                client: APIClient()
             )
         )
     )
