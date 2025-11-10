@@ -11,13 +11,23 @@ import SwiftUI
 struct PopularMoviesApp: App {
     
     var body: some Scene {
-        WindowGroup {  
-            PopularView(
-                viewModel: PopularViewModel(
-                    service: MovieService(
-                        client: APIClient(apiKey: Self.apiKey))
+        WindowGroup {
+            TabView {
+                PopularView(
+                    viewModel: PopularViewModel(
+                        service: MovieService(
+                            client: APIClient(apiKey: Self.apiKey))
+                    )
                 )
-            )
+                .tabItem {
+                    Label("Populares", systemImage: "film.fill")
+                }
+                
+                FavoritesView(viewModel: FavoritesViewModel())
+                    .tabItem {
+                        Label("Favoritos", systemImage: "heart.fill")
+                    }
+            }
         }
     }
 }
