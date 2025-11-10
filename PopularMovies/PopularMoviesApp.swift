@@ -20,12 +20,12 @@ struct PopularMoviesApp: App {
                     )
                 )
                 .tabItem {
-                    Label("Populares", systemImage: "film.fill")
+                    Label("popular", systemImage: "film.fill")
                 }
                 
                 FavoritesView(viewModel: FavoritesViewModel())
                     .tabItem {
-                        Label("Favoritos", systemImage: "heart.fill")
+                        Label("favorites", systemImage: "heart.fill")
                     }
             }
         }

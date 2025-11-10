@@ -1,0 +1,146 @@
+{
+  "sourceLanguage" : "pt-BR",
+  "strings" : {
+    "error_loading_movies" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erro ao carregar filmes"
+          }
+        }
+      }
+    },
+    "favorites" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoritos"
+          }
+        }
+      }
+    },
+    "loading_movies" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carregando filmes..."
+          }
+        }
+      }
+    },
+    "movies_favorite_appear_here" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filmes que você favoritar aparecerão aqui."
+          }
+        }
+      }
+    },
+    "movies_not_found" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filmes não encontrados"
+          }
+        }
+      }
+    },
+    "movies_not_found_with_name" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filmes não encontrados com o título pesquisado"
+          }
+        }
+      }
+    },
+    "no_favorites" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sem favoritos"
+          }
+        }
+      }
+    },
+    "please_wait_loading_popular_movies" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aguarde, estamos carregando os filmes populares."
+          }
+        }
+      }
+    },
+    "popular" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Populares"
+          }
+        }
+      }
+    },
+    "popular_movies" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filmes Populares"
+          }
+        }
+      }
+    },
+    "search_for_movies" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar filmes..."
+          }
+        }
+      }
+    },
+    "search_movies" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar Filmes"
+          }
+        }
+      }
+    },
+    "try_again" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentar novamente"
+          }
+        }
+      }
+    },
+    "watch_trailer" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assistir Triler"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

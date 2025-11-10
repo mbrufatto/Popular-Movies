@@ -17,9 +17,9 @@ struct MovieDetailView: View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color.blue.opacity(0.9),
-                    Color.purple.opacity(0.7),
-                    Color.black.opacity(0.6)
+                    .blue.opacity(0.9),
+                    .purple.opacity(0.7),
+                    .black.opacity(0.6)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -61,7 +61,7 @@ struct MovieDetailView: View {
                         Button {
                             showTrailer = true
                         } label: {
-                            Label("Assistir Triler", systemImage: "play.circle.fill")
+                            Label("watch_trailer", systemImage: "play.circle.fill")
                                 .font(.headline)
                                 .padding()
                                 .frame(maxWidth: .infinity)

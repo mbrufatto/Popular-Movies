@@ -40,7 +40,7 @@ struct FavoritesView: View {
                 VStack {
                     Spacer()
                     if viewModel.favorites.isEmpty {
-                        Text("Sem favoritos")
+                        Text("no_favorites")
                             .font(.headline)
                             .foregroundStyle(.white)
                             .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 1)
@@ -50,7 +50,7 @@ struct FavoritesView: View {
                                 .foregroundStyle(.white.opacity(0.85))
                                 .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 1)
                             
-                            Text("Filmes que você favoritar aparecerão aqui.")
+                            Text("movies_favorite_appear_here")
                                 .font(.footnote)
                                 .foregroundStyle(.white.opacity(0.85))
                                 .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 1)
@@ -63,7 +63,6 @@ struct FavoritesView: View {
                                     let movie = viewModel.asMovie(favorite: favorite)
                                     
                                     NavigationLink {
-                                        // Quebrando em subexpressões para o type-checker
                                         let service = MovieService(client: APIClient())
                                         let detailVM = MovieDetailViewModel(movie: movie, service: service)
                                         MovieDetailView(
@@ -96,7 +95,7 @@ struct FavoritesView: View {
                     Spacer()
                 }
             }
-            .navigationTitle("Favoritos")
+            .navigationTitle("favorites")
             .task {
                 viewModel.loadFavorites()
             }

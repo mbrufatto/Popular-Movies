@@ -19,7 +19,7 @@ struct PopularView: View {
         appearance.configureWithTransparentBackground()
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-
+        
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
@@ -39,7 +39,7 @@ struct PopularView: View {
                 .ignoresSafeArea()
                 
                 VStack {
-                    TextField("Buscar filmes...", text: $viewModel.query)
+                    TextField("search_for_movies", text: $viewModel.query)
                         .padding(.vertical, 16)
                         .padding(.horizontal, 16)
                         .background(
@@ -91,10 +91,10 @@ struct PopularView: View {
                 
                 if viewModel.isLoading && viewModel.movies.isEmpty && viewModel.errorMessage == nil {
                     VStack(spacing: 12) {
-                        ProgressView("Carregando filmes...")
+                        ProgressView("loading_movies")
                             .progressViewStyle(.circular)
                             .scaleEffect(1.3)
-                        Text("Aguarde, estamos carregando os filmes populares.")
+                        Text("please_wait_loading_popular_movies")
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     }
@@ -103,12 +103,13 @@ struct PopularView: View {
                 }
                 
                 if !viewModel.isLoading && viewModel.movies.isEmpty && viewModel.errorMessage == nil {
-                    
-                    Text(viewModel.query.isEmpty ? "Filmes não encontrados." : "Filmes não encontrados com o nome \(viewModel.query)")
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                    
+                        Text(viewModel.query.isEmpty ?
+                             "movies_not_found" :
+                             "movies_not_found_with_name")
+                            .font(.headline)
+                            .foregroundStyle(.white)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
                 }
                 
                 if let error = viewModel.errorMessage, viewModel.movies.isEmpty {
@@ -116,7 +117,7 @@ struct PopularView: View {
                         Image(systemName: "exclamationmark.triangle.fill")
                             .font(.system(size: 40))
                             .foregroundStyle(.yellow)
-                        Text("Erro ao carregar filmes")
+                        Text("error_loading_movies")
                             .font(.headline)
                         Text(error)
                             .font(.subheadline)
@@ -129,7 +130,7 @@ struct PopularView: View {
                                 await viewModel.loadNextPageDependingOnMode()
                             }
                         } label: {
-                            Label("Tentar novamente", systemImage: "arrow.clockwise")
+                            Label("try_again", systemImage: "arrow.clockwise")
                         }
                         .buttonStyle(.borderedProminent)
                         .padding(.top, 8)
@@ -139,7 +140,7 @@ struct PopularView: View {
                     .background(Color(.systemBackground).opacity(0.95))
                 }
             }
-            .navigationTitle(viewModel.query.isEmpty ? "Filmes Populares" : "Buscar Filmes")
+            .navigationTitle(viewModel.query.isEmpty ? "popular_movies" : "search_movies")
             .task {
                 await viewModel.loadNextPageDependingOnMode()
             }
