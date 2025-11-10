@@ -10,7 +10,16 @@ import Foundation
 
 final class FavoritesManager {
     static let shared = FavoritesManager()
-    private let context = CoreDataManager.shared.context
+    
+    private let context: NSManagedObjectContext
+    
+    private init() {
+        self.context = CoreDataManager.shared.context
+    }
+    
+    init(context: NSManagedObjectContext) {
+        self.context = context
+    }
     
     func addFavorite(from movie: Movie, posterData: Data? = nil, backdropData: Data? = nil) {
         let favorite = Favorite(context: context)

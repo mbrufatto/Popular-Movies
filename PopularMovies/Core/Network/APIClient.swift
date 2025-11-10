@@ -15,7 +15,7 @@ enum APIError: Error {
     case rateLimited
 }
 
-final class APIClient {
+class APIClient {
     
     private let session: URLSession
     private let apiKey: String

@@ -8,7 +8,7 @@
 import CoreData
 
 struct CoreDataManager {
-    static  let shared = CoreDataManager()
+    static let shared = CoreDataManager()
     
     let container: NSPersistentContainer
     
